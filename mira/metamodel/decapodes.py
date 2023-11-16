@@ -7,19 +7,11 @@ from dataclasses import dataclass, field
 from typing import List, Mapping
 
 import sympy
-from sympy import Matrix, MatrixSymbol, MatrixExpr
+from sympy import MatrixSymbol
 from sympy import abc
 
-SCALAR_TYPE_SET = {'Literal', 'Constant', 'Form0', 'DualForm0'}
 VECTOR_TYPE_SET = {'Form1', 'DualForm1'}
 MATRIX_TYPE_SET = {'Form2', 'DualForm2'}
-FORM0_DUALFORM1 = {'⋆₀'}
-FORM1_DUALFORM0 = {'⋆₁'}
-DUALFORM1_FORM0 = {'⋆₀⁻¹'}
-DUALFORM0_FORM1 = {'⋆₁⁻¹'}
-FORM0_FORM1 = {'d₀'}
-DUALFORM0_DUALFORM1 = {'dual_d₀'}
-FORM_PRESERVING = {'∂ₜ,'}
 
 
 class Decapode:
@@ -49,6 +41,12 @@ class Decapode:
         for var_id, var in copy.deepcopy(self.variables).items():
             if var_id not in root_variable_map:
                 var.expression = expand_variable(var, var_produced_map)
+                if is_vector(var):
+                    var.expression = MatrixSymbol(str(var.expression),
+                                                  abc.N, 1)
+                elif is_matrix(var):
+                    var.expression = MatrixSymbol(str(var.expression), abc.N,
+                                                  abc.M)
                 new_vars[var_id] = var
             else:
                 var = RootVariable(var_id, var.type, var.name, var.identifiers)
@@ -56,10 +54,24 @@ class Decapode:
                 temp_var_map[var_id] = root_variable_map[var_id][0]
                 var.expression[0] = expand_variable(var.get_variable(),
                                                     temp_var_map)
+
                 temp_var_map = copy.deepcopy(var_produced_map)
                 temp_var_map[var_id] = root_variable_map[var_id][1]
                 var.expression[1] = expand_variable(var.get_variable(),
                                                     temp_var_map)
+
+                if is_vector(var):
+                    var.expression[0] = MatrixSymbol(str(var.expression),
+                                                     abc.N, 1)
+                    var.expression[1] = MatrixSymbol(str(var.expression),
+                                                     abc.N, 1)
+                elif is_matrix(var):
+                    var.expression[0] = MatrixSymbol(str(var.expression),
+                                                     abc.N,
+                                                     abc.M)
+                    var.expression[1] = MatrixSymbol(str(var.expression),
+                                                     abc.N,
+                                                     abc.M)
                 new_vars[var_id] = var
         self.update_vars(new_vars)
 
@@ -79,10 +91,6 @@ class Decapode:
                                               for var in var_attr])
 
 
-def is_scalar(var):
-    return var.type in SCALAR_TYPE_SET
-
-
 def is_vector(var):
     return var.type in VECTOR_TYPE_SET
 
@@ -96,143 +104,29 @@ def expand_variable(variable, var_produced_map):
         return variable.expression
     var_prod = var_produced_map.get(variable.id)
     if not var_prod:
-        if is_scalar(variable):
-            return sympy.Symbol(variable.name)
-        elif is_vector(variable):
-            return MatrixSymbol(variable.name, abc.N, 1)
+        return sympy.Symbol(variable.name)
     elif isinstance(var_prod, Op1):
         return sympy.Function(var_prod.function_str)(expand_variable(
             var_prod.src, var_produced_map))
     elif isinstance(var_prod, Op2):
-        proj1 = var_prod.proj1
-        proj2 = var_prod.proj2
         arg1 = expand_variable(var_prod.proj1, var_produced_map)
         arg2 = expand_variable(var_prod.proj2, var_produced_map)
         if var_prod.function_str == '/' or var_prod.function_str == './':
-            if is_vector(proj1) and is_vector(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1_vector / arg2_vector
-            elif is_vector(proj1) and is_scalar(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                return arg1_vector / arg2
-            elif is_scalar(proj1) and is_vector(proj2):
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1 / arg2_vector
-            elif is_scalar(proj1) and is_scalar(proj2):
-                return arg1 / arg2
+            return arg1 / arg2
         elif var_prod.function_str == '*' or var_prod.function_str == '.*':
-            if is_vector(proj1) and is_vector(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1_vector * arg2_vector
-            elif is_vector(proj1) and is_scalar(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                return arg1_vector * arg2
-            elif is_scalar(proj1) and is_vector(proj2):
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1 * arg2_vector
-            if is_scalar(proj1) and is_scalar(proj2):
-                return arg1 * arg2
+            return arg1 * arg2
         elif var_prod.function_str == '+' or var_prod.function_str == '.+':
-            if is_vector(proj1) and is_vector(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1_vector + arg2_vector
-            elif is_vector(proj1) and is_scalar(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                return arg1_vector + arg2
-            elif is_scalar(proj1) and is_vector(proj2):
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1 + arg2_vector
-            if is_scalar(proj1) and is_scalar(proj2):
-                return arg1 + arg2
+            return arg1 + arg2
         elif var_prod.function_str == '-' or var_prod.function_str == '.-':
-            if is_vector(proj1) and is_vector(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1_vector - arg2_vector
-            elif is_vector(proj1) and is_scalar(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                return arg1_vector - arg2
-            elif is_scalar(proj1) and is_vector(proj2):
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1 - arg2_vector
-            if is_scalar(proj1) and is_scalar(proj2):
-                return arg1 - arg2
+            return arg1 - arg2
         elif var_prod.function_str == '^' or var_prod.function_str == '.^':
-            if is_vector(proj1) and is_vector(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1_vector ** arg2_vector
-            elif is_vector(proj1) and is_scalar(proj2):
-                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-                return arg1_vector ** arg2
-            elif is_scalar(proj1) and is_vector(proj2):
-                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-                return arg1 ** arg2_vector
-            if is_scalar(proj1) and is_scalar(proj2):
-                return arg1 ** arg2
+            return arg1 ** arg2
         else:
             return sympy.Function(var_prod.function_str)(arg1, arg2)
     elif isinstance(var_prod, Summation):
         args = [expand_variable(summand, var_produced_map)
                 for summand in var_prod.summands]
         return sympy.Add(*args)
-
-
-# def expand_variable(variable, var_produced_map):
-#     if variable.expression:
-#         return variable.expression
-#     var_prod = var_produced_map.get(variable.id)
-#     if not var_prod:
-#         return sympy.Symbol(variable.name)
-#     elif isinstance(var_prod, Op1):
-#
-#         # if is_vector(var_prod.src):
-#         #     var_prod.src.expression = MatrixSymbol(var_prod.src.name,
-#         #                                            abc.N,
-#         #                                            1)
-#
-#         return sympy.Function(var_prod.function_str)(expand_variable(
-#             var_prod.src, var_produced_map))
-#     elif isinstance(var_prod, Op2):
-#         proj1 = var_prod.proj1
-#         proj2 = var_prod.proj2
-#         arg1 = expand_variable(var_prod.proj1, var_produced_map)
-#         arg2 = expand_variable(var_prod.proj2, var_produced_map)
-#         if var_prod.function_str == '/' or var_prod.function_str == './':
-#             # if is_vector(proj1) and is_vector(proj2):
-#             #     arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-#             #     arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-#             #     return arg1_vector / arg2_vector
-#             # elif is_vector(proj1) and is_scalar(proj2):
-#             #     arg1_vector = MatrixSymbol(arg1, abc.N, 1)
-#             #     return arg1_vector / arg2
-#             # elif is_scalar(proj1) and is_scalar(proj2):
-#             #     arg2_vector = MatrixSymbol(arg2, abc.N, 1)
-#             #     return arg1 / arg2_vector
-#             # elif is_scalar(proj1) and is_scalar(proj2):
-#             #     return arg1 / arg2
-#             return arg1/arg2
-#         elif var_prod.function_str == '*' or var_prod.function_str == '.*':
-#             # if is_scalar(proj1) and is_scalar(proj2):
-#                 return arg1 * arg2
-#         elif var_prod.function_str == '+' or var_prod.function_str == '.+':
-#             # if is_scalar(proj1) and is_scalar(proj2):
-#                 return arg1 + arg2
-#         elif var_prod.function_str == '-' or var_prod.function_str == '.-':
-#             # if is_scalar(proj1) and is_scalar(proj2):
-#                 return arg1 - arg2
-#         elif var_prod.function_str == '^' or var_prod.function_str == '.^':
-#             # if is_scalar(proj1) and is_scalar(proj2):
-#                 return arg1 ** arg2
-#         else:
-#             return sympy.Function(var_prod.function_str)(arg1, arg2)
-#     elif isinstance(var_prod, Summation):
-#         args = [expand_variable(summand, var_produced_map)
-#                 for summand in var_prod.summands]
-#         return sympy.Add(*args)
 
 
 # TODO: Inherit from Concept?
