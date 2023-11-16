@@ -7,36 +7,12 @@ from dataclasses import dataclass, field
 from typing import List, Mapping
 
 import sympy
+from sympy import Matrix, MatrixSymbol, MatrixExpr
+from sympy import abc
 
-
-def expand_variable(variable, var_produced_map):
-    if variable.expression:
-        return variable.expression
-    var_prod = var_produced_map.get(variable.id)
-    if not var_prod:
-        return sympy.Symbol(variable.name)
-    elif isinstance(var_prod, Op1):
-        return sympy.Function(var_prod.function_str)(expand_variable(
-            var_prod.src, var_produced_map))
-    elif isinstance(var_prod, Op2):
-        arg1 = expand_variable(var_prod.proj1, var_produced_map)
-        arg2 = expand_variable(var_prod.proj2, var_produced_map)
-        if var_prod.function_str == '/':
-            return arg1 / arg2
-        elif var_prod.function_str == '*':
-            return arg1 * arg2
-        elif var_prod.function_str == '+':
-            return arg1 + arg2
-        elif var_prod.function_str == '-':
-            return arg1 - arg2
-        elif var_prod.function_str == '^':
-            return arg1 ** arg2
-        else:
-            return sympy.Function(var_prod.function_str)(arg1, arg2)
-    elif isinstance(var_prod, Summation):
-        args = [expand_variable(summand, var_produced_map)
-                for summand in var_prod.summands]
-        return sympy.Add(*args)
+SCALAR_TYPE_SET = {'Literal', 'Constant', 'Form0', 'DualForm0'}
+VECTOR_TYPE_SET = {'Form1', 'DualForm1'}
+MATRIX_TYPE_SET = {'Form2', 'DualForm2'}
 
 
 class Decapode:
@@ -46,6 +22,9 @@ class Decapode:
         self.op2s = op2s
         self.summations = summations
         self.tangent_variables = tangent_variables
+
+        self.matrix_variables = {}
+        self.vector_ops = {}
 
         var_produced_map = {}
         root_variable_map = defaultdict(list)
@@ -93,6 +72,166 @@ class Decapode:
                                               for var in var_attr])
 
 
+def is_scalar(var):
+    return var.type in SCALAR_TYPE_SET
+
+
+def is_vector(var):
+    return var.type in VECTOR_TYPE_SET
+
+
+def is_matrix(var):
+    return var.type in MATRIX_TYPE_SET
+
+
+def perform_operation(proj1, proj2):
+    pass
+
+
+def expand_variable(variable, var_produced_map):
+    if variable.expression:
+        return variable.expression
+    var_prod = var_produced_map.get(variable.id)
+    if not var_prod:
+        if is_scalar(variable):
+            return sympy.Symbol(variable.name)
+        elif is_vector(variable):
+            return MatrixSymbol(variable.name, abc.N, 1)
+    elif isinstance(var_prod, Op1):
+        return sympy.Function(var_prod.function_str)(expand_variable(
+            var_prod.src, var_produced_map))
+    elif isinstance(var_prod, Op2):
+        proj1 = var_prod.proj1
+        proj2 = var_prod.proj2
+        arg1 = expand_variable(var_prod.proj1, var_produced_map)
+        arg2 = expand_variable(var_prod.proj2, var_produced_map)
+        if var_prod.function_str == '/' or var_prod.function_str == './':
+            if is_vector(proj1) and is_vector(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1_vector / arg2_vector
+            elif is_vector(proj1) and is_scalar(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                return arg1_vector / arg2
+            elif is_scalar(proj1) and is_vector(proj2):
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1 / arg2_vector
+            elif is_scalar(proj1) and is_scalar(proj2):
+                return arg1 / arg2
+        elif var_prod.function_str == '*' or var_prod.function_str == '.*':
+            if is_vector(proj1) and is_vector(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1_vector * arg2_vector
+            elif is_vector(proj1) and is_scalar(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                return arg1_vector * arg2
+            elif is_scalar(proj1) and is_vector(proj2):
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1 * arg2_vector
+            if is_scalar(proj1) and is_scalar(proj2):
+                return arg1 * arg2
+        elif var_prod.function_str == '+' or var_prod.function_str == '.+':
+            if is_vector(proj1) and is_vector(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1_vector + arg2_vector
+            elif is_vector(proj1) and is_scalar(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                return arg1_vector + arg2
+            elif is_scalar(proj1) and is_vector(proj2):
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1 + arg2_vector
+            if is_scalar(proj1) and is_scalar(proj2):
+                return arg1 + arg2
+        elif var_prod.function_str == '-' or var_prod.function_str == '.-':
+            if is_vector(proj1) and is_vector(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1_vector - arg2_vector
+            elif is_vector(proj1) and is_scalar(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                return arg1_vector - arg2
+            elif is_scalar(proj1) and is_vector(proj2):
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1 - arg2_vector
+            if is_scalar(proj1) and is_scalar(proj2):
+                return arg1 - arg2
+        elif var_prod.function_str == '^' or var_prod.function_str == '.^':
+            if is_vector(proj1) and is_vector(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1_vector ** arg2_vector
+            elif is_vector(proj1) and is_scalar(proj2):
+                arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+                return arg1_vector ** arg2
+            elif is_scalar(proj1) and is_vector(proj2):
+                arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+                return arg1 ** arg2_vector
+            if is_scalar(proj1) and is_scalar(proj2):
+                return arg1 ** arg2
+        else:
+            return sympy.Function(var_prod.function_str)(arg1, arg2)
+    elif isinstance(var_prod, Summation):
+        args = [expand_variable(summand, var_produced_map)
+                for summand in var_prod.summands]
+        return sympy.Add(*args)
+
+
+# def expand_variable(variable, var_produced_map):
+#     if variable.expression:
+#         return variable.expression
+#     var_prod = var_produced_map.get(variable.id)
+#     if not var_prod:
+#         return sympy.Symbol(variable.name)
+#     elif isinstance(var_prod, Op1):
+#
+#         # if is_vector(var_prod.src):
+#         #     var_prod.src.expression = MatrixSymbol(var_prod.src.name,
+#         #                                            abc.N,
+#         #                                            1)
+#
+#         return sympy.Function(var_prod.function_str)(expand_variable(
+#             var_prod.src, var_produced_map))
+#     elif isinstance(var_prod, Op2):
+#         proj1 = var_prod.proj1
+#         proj2 = var_prod.proj2
+#         arg1 = expand_variable(var_prod.proj1, var_produced_map)
+#         arg2 = expand_variable(var_prod.proj2, var_produced_map)
+#         if var_prod.function_str == '/' or var_prod.function_str == './':
+#             # if is_vector(proj1) and is_vector(proj2):
+#             #     arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+#             #     arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+#             #     return arg1_vector / arg2_vector
+#             # elif is_vector(proj1) and is_scalar(proj2):
+#             #     arg1_vector = MatrixSymbol(arg1, abc.N, 1)
+#             #     return arg1_vector / arg2
+#             # elif is_scalar(proj1) and is_scalar(proj2):
+#             #     arg2_vector = MatrixSymbol(arg2, abc.N, 1)
+#             #     return arg1 / arg2_vector
+#             # elif is_scalar(proj1) and is_scalar(proj2):
+#             #     return arg1 / arg2
+#             return arg1/arg2
+#         elif var_prod.function_str == '*' or var_prod.function_str == '.*':
+#             # if is_scalar(proj1) and is_scalar(proj2):
+#                 return arg1 * arg2
+#         elif var_prod.function_str == '+' or var_prod.function_str == '.+':
+#             # if is_scalar(proj1) and is_scalar(proj2):
+#                 return arg1 + arg2
+#         elif var_prod.function_str == '-' or var_prod.function_str == '.-':
+#             # if is_scalar(proj1) and is_scalar(proj2):
+#                 return arg1 - arg2
+#         elif var_prod.function_str == '^' or var_prod.function_str == '.^':
+#             # if is_scalar(proj1) and is_scalar(proj2):
+#                 return arg1 ** arg2
+#         else:
+#             return sympy.Function(var_prod.function_str)(arg1, arg2)
+#     elif isinstance(var_prod, Summation):
+#         args = [expand_variable(summand, var_produced_map)
+#                 for summand in var_prod.summands]
+#         return sympy.Add(*args)
+
+
 # TODO: Inherit from Concept?
 @dataclass
 class Variable:
@@ -106,6 +245,20 @@ class Variable:
 @dataclass
 class RootVariable(Variable):
     expression: List[sympy.Expr] = field(default_factory=lambda: [None, None])
+
+    def get_variable(self):
+        return Variable(
+            self.id,
+            self.type,
+            self.name,
+            identifiers=self.identifiers
+        )
+
+
+@dataclass
+class MatrixVariable(Variable):
+    expression: sympy.Expr = field(default=None)
+    dimensions: List[int] = field(default_factory=list)
 
     def get_variable(self):
         return Variable(
