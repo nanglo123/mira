@@ -13,6 +13,13 @@ from sympy import abc
 SCALAR_TYPE_SET = {'Literal', 'Constant', 'Form0', 'DualForm0'}
 VECTOR_TYPE_SET = {'Form1', 'DualForm1'}
 MATRIX_TYPE_SET = {'Form2', 'DualForm2'}
+FORM0_DUALFORM1 = {'⋆₀'}
+FORM1_DUALFORM0 = {'⋆₁'}
+DUALFORM1_FORM0 = {'⋆₀⁻¹'}
+DUALFORM0_FORM1 = {'⋆₁⁻¹'}
+FORM0_FORM1 = {'d₀'}
+DUALFORM0_DUALFORM1 = {'dual_d₀'}
+FORM_PRESERVING = {'∂ₜ,'}
 
 
 class Decapode:
@@ -82,10 +89,6 @@ def is_vector(var):
 
 def is_matrix(var):
     return var.type in MATRIX_TYPE_SET
-
-
-def perform_operation(proj1, proj2):
-    pass
 
 
 def expand_variable(variable, var_produced_map):
