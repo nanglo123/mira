@@ -61,15 +61,15 @@ class Decapode:
                                                     temp_var_map)
 
                 if is_vector(var):
-                    var.expression[0] = MatrixSymbol(str(var.expression),
+                    var.expression[0] = MatrixSymbol(str(var.expression[0]),
                                                      abc.N, 1)
-                    var.expression[1] = MatrixSymbol(str(var.expression),
+                    var.expression[1] = MatrixSymbol(str(var.expression[1]),
                                                      abc.N, 1)
                 elif is_matrix(var):
-                    var.expression[0] = MatrixSymbol(str(var.expression),
+                    var.expression[0] = MatrixSymbol(str(var.expression[0]),
                                                      abc.N,
                                                      abc.M)
-                    var.expression[1] = MatrixSymbol(str(var.expression),
+                    var.expression[1] = MatrixSymbol(str(var.expression[1]),
                                                      abc.N,
                                                      abc.M)
                 new_vars[var_id] = var
@@ -142,20 +142,6 @@ class Variable:
 @dataclass
 class RootVariable(Variable):
     expression: List[sympy.Expr] = field(default_factory=lambda: [None, None])
-
-    def get_variable(self):
-        return Variable(
-            self.id,
-            self.type,
-            self.name,
-            identifiers=self.identifiers
-        )
-
-
-@dataclass
-class MatrixVariable(Variable):
-    expression: sympy.Expr = field(default=None)
-    dimensions: List[int] = field(default_factory=list)
 
     def get_variable(self):
         return Variable(
