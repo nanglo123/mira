@@ -1,9 +1,12 @@
 {
- "name": "Scenario 3 model with cases and detection",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Scenario 3 model with cases and detection",
- "model_version": "0.1",
+ "schema": {},
+ "header": {
+  "name": "Scenario 3 model with cases and detection",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Scenario 3 model with cases and detection",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -249,38 +252,38 @@
    "initials": [
     {
      "target": "S",
-     "expression": "2300000.00000000",
-     "expression_mathml": "<cn>2300000.0</cn>"
+     "expression": "Expr(2300000)",
+     "expression_mathml": "<expr><cn>2300000</cn></expr>"
     },
     {
      "target": "I",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     },
     {
      "target": "E",
-     "expression": "1000.00000000000",
-     "expression_mathml": "<cn>1000.0</cn>"
+     "expression": "Expr(1000)",
+     "expression_mathml": "<expr><cn>1000</cn></expr>"
     },
     {
      "target": "V",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     },
     {
      "target": "C",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     },
     {
      "target": "D",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     },
     {
      "target": "U",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     }
    ],
    "parameters": [

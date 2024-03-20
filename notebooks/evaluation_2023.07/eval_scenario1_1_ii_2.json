@@ -1,9 +1,11 @@
 {
- "name": "Evaluation Scenario 1. Part 1 (ii) Masking type 2",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Evaluation Scenario 1. Part 1 (ii) Masking type 2",
- "model_version": "0.1",
+ "header": {
+  "name": "Evaluation Scenario 1. Part 1 (ii) Masking type 2",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Evaluation Scenario 1. Part 1 (ii) Masking type 2",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -208,33 +210,33 @@
    "initials": [
     {
      "target": "S",
-     "expression": "19339995.0000000",
-     "expression_mathml": "<cn>19339995.0</cn>"
+     "expression": "Expr(19339995)",
+     "expression_mathml": "<expr><cn>19339995</cn></expr>"
     },
     {
      "target": "I",
-     "expression": "4.00000000000000",
-     "expression_mathml": "<cn>4.0</cn>"
+     "expression": "Expr(4)",
+     "expression_mathml": "<expr><cn>4</cn></expr>"
     },
     {
      "target": "E",
-     "expression": "1.00000000000000",
-     "expression_mathml": "<cn>1.0</cn>"
+     "expression": "Expr(1)",
+     "expression_mathml": "<expr><cn>1</cn></expr>"
     },
     {
      "target": "R",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     },
     {
      "target": "H",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     },
     {
      "target": "D",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "Expr(0)",
+     "expression_mathml": "<expr><cn>0</cn></expr>"
     }
    ],
    "parameters": [
@@ -357,6 +359,10 @@
       "expression": "1/day",
       "expression_mathml": "<apply><power/><ci>day</ci><cn>-1</cn></apply>"
      }
+    },
+    {
+     "id": "beta",
+     "value": 0.4
     }
    ],
    "observables": [],
