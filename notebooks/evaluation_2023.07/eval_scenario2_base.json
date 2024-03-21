@@ -1,9 +1,11 @@
 {
- "name": "Evaluation Scenario 2 Base model",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Evaluation Scenario 2 Base model",
- "model_version": "0.1",
+ "header": {
+  "name": "Evaluation Scenario 2 Base model",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Evaluation Scenario 2 Base model",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -208,32 +210,32 @@
    "initials": [
     {
      "target": "S",
-     "expression": "14561489.0000000",
+     "expression": "14561489.0",
      "expression_mathml": "<cn>14561489.0</cn>"
     },
     {
      "target": "I",
-     "expression": "2123452.00000000",
+     "expression": "2123452.0",
      "expression_mathml": "<cn>2123452.0</cn>"
     },
     {
      "target": "E",
-     "expression": "530863.000000000",
+     "expression": "530863.0",
      "expression_mathml": "<cn>530863.0</cn>"
     },
     {
      "target": "R",
-     "expression": "2069902.00000000",
+     "expression": "2069902.0",
      "expression_mathml": "<cn>2069902.0</cn>"
     },
     {
      "target": "H",
-     "expression": "744.000000000000",
+     "expression": "744.0",
      "expression_mathml": "<cn>744.0</cn>"
     },
     {
      "target": "D",
-     "expression": "53550.0000000000",
+     "expression": "53550.0",
      "expression_mathml": "<cn>53550.0</cn>"
     }
    ],

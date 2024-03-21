@@ -1,9 +1,11 @@
 {
- "name": "Evaluation Scenario 1 SIRHD model",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Evaluation Scenario 1 SIRHD model",
- "model_version": "0.1",
+ "header": {
+  "name": "Evaluation Scenario 1 SIRHD model",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Evaluation Scenario 1 SIRHD model",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -177,12 +179,12 @@
    "initials": [
     {
      "target": "S",
-     "expression": "19339995.0000000",
+     "expression": "19339995.0",
      "expression_mathml": "<cn>19339995.0</cn>"
     },
     {
      "target": "I",
-     "expression": "4.00000000000000",
+     "expression": "4.0",
      "expression_mathml": "<cn>4.0</cn>"
     },
     {
@@ -281,6 +283,10 @@
       "expression": "1/day",
       "expression_mathml": "<apply><power/><ci>day</ci><cn>-1</cn></apply>"
      }
+    },
+    {
+     "id": "r_E_to_I",
+     "value": 0.2
     }
    ],
    "observables": [],

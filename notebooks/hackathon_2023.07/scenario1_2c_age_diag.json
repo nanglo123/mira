@@ -1,9 +1,12 @@
 {
- "name": "Scenario 1 age/diagnosis stratified",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Scenario 1 age/diagnosis stratified",
- "model_version": "0.1",
+ "schema": {},
+ "header": {
+  "name": "Scenario 1 age/diagnosis stratified",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Scenario 1 age/diagnosis stratified",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -1062,93 +1065,93 @@
    "initials": [
     {
      "target": "S_middle_aged",
-     "expression": "0.3333332738095238",
-     "expression_mathml": "<cn>0.3333332738095238015</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0.999999821428571)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0.99999982142857147</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "I_middle_aged_diagnosed",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(SympyExprStr(0)/3))/2)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr></sympyexprstr><cn>2</cn></apply></sympyexprstr>"
     },
     {
      "target": "E_middle_aged",
-     "expression": "5.952380952380953e-8",
-     "expression_mathml": "<cn>5.952380952380953002e-8</cn>"
+     "expression": "SympyExprStr(SympyExprStr(1.78571428571429e-7)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>1.7857142857142858e-7</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "I_middle_aged_undiagnosed",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(SympyExprStr(0)/3))/2)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr></sympyexprstr><cn>2</cn></apply></sympyexprstr>"
     },
     {
      "target": "I_old_diagnosed",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(SympyExprStr(0)/3))/2)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr></sympyexprstr><cn>2</cn></apply></sympyexprstr>"
     },
     {
      "target": "I_old_undiagnosed",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(SympyExprStr(0)/3))/2)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr></sympyexprstr><cn>2</cn></apply></sympyexprstr>"
     },
     {
      "target": "I_young_diagnosed",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(SympyExprStr(0)/3))/2)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr></sympyexprstr><cn>2</cn></apply></sympyexprstr>"
     },
     {
      "target": "I_young_undiagnosed",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(SympyExprStr(0)/3))/2)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr></sympyexprstr><cn>2</cn></apply></sympyexprstr>"
     },
     {
      "target": "S_old",
-     "expression": "0.3333332738095238",
-     "expression_mathml": "<cn>0.3333332738095238015</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0.999999821428571)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0.99999982142857147</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "E_old",
-     "expression": "5.952380952380953e-8",
-     "expression_mathml": "<cn>5.952380952380953002e-8</cn>"
+     "expression": "SympyExprStr(SympyExprStr(1.78571428571429e-7)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>1.7857142857142858e-7</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "S_young",
-     "expression": "0.3333332738095238",
-     "expression_mathml": "<cn>0.3333332738095238015</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0.999999821428571)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0.99999982142857147</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "E_young",
-     "expression": "5.952380952380953e-8",
-     "expression_mathml": "<cn>5.952380952380953002e-8</cn>"
+     "expression": "SympyExprStr(SympyExprStr(1.78571428571429e-7)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>1.7857142857142858e-7</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "R_middle_aged",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "R_old",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "R_young",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "D_middle_aged",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "D_old",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     },
     {
      "target": "D_young",
-     "expression": "0.0",
-     "expression_mathml": "<cn>0.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(0)/3)",
+     "expression_mathml": "<sympyexprstr><apply><divide/><sympyexprstr><cn>0</cn></sympyexprstr><cn>3</cn></apply></sympyexprstr>"
     }
    ],
    "parameters": [
@@ -1403,6 +1406,10 @@
     {
      "id": "p_undiagnosed_diagnosed",
      "value": 0.1
+    },
+    {
+     "id": "k",
+     "value": 5.0
     }
    ],
    "observables": [

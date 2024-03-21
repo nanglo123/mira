@@ -1,9 +1,11 @@
 {
- "name": "Evaluation Scenario 2 Base model",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Evaluation Scenario 2 Base model",
- "model_version": "0.1",
+ "header": {
+  "name": "Evaluation Scenario 2 Base model",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Evaluation Scenario 2 Base model",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -2835,182 +2837,182 @@
    "initials": [
     {
      "target": "S_unvaccinated_masked",
-     "expression": "3640372.25000000",
-     "expression_mathml": "<cn>3640372.25</cn>"
+     "expression": "SympyExprStr(SympyExprStr(14561489.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_unvaccinated_masked",
-     "expression": "530863.000000000",
-     "expression_mathml": "<cn>530863.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(2123452.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_unvaccinated_masked",
-     "expression": "132715.750000000",
-     "expression_mathml": "<cn>132715.75</cn>"
+     "expression": "SympyExprStr(SympyExprStr(530863.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_unvaccinated_unmasked",
-     "expression": "530863.000000000",
-     "expression_mathml": "<cn>530863.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(2123452.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "S_unvaccinated_unmasked",
-     "expression": "3640372.25000000",
-     "expression_mathml": "<cn>3640372.25</cn>"
+     "expression": "SympyExprStr(SympyExprStr(14561489.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_unvaccinated_unmasked",
-     "expression": "132715.750000000",
-     "expression_mathml": "<cn>132715.75</cn>"
+     "expression": "SympyExprStr(SympyExprStr(530863.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_vaccinated_j_and_j",
-     "expression": "353908.6666666667",
-     "expression_mathml": "<cn>353908.6666666667006</cn>"
+     "expression": "SympyExprStr(SympyExprStr(2123452.0)/2)/3",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply>"
     },
     {
      "target": "I_vaccinated_moderna_1dose",
-     "expression": "176954.33333333334",
-     "expression_mathml": "<cn>176954.33333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2123452.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_vaccinated_moderna_2dose",
-     "expression": "176954.33333333334",
-     "expression_mathml": "<cn>176954.33333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2123452.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_vaccinated_pfizer_1dose",
-     "expression": "176954.33333333334",
-     "expression_mathml": "<cn>176954.33333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2123452.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_vaccinated_pfizer_2dose",
-     "expression": "176954.33333333334",
-     "expression_mathml": "<cn>176954.33333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2123452.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2123452.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "S_vaccinated_j_and_j",
-     "expression": "2426914.8333333335",
-     "expression_mathml": "<cn>2426914.8333333334995</cn>"
+     "expression": "SympyExprStr(SympyExprStr(14561489.0)/2)/3",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply>"
     },
     {
      "target": "E_vaccinated_j_and_j",
-     "expression": "88477.16666666667",
-     "expression_mathml": "<cn>88477.1666666666697</cn>"
+     "expression": "SympyExprStr(SympyExprStr(530863.0)/2)/3",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply>"
     },
     {
      "target": "S_vaccinated_moderna_1dose",
-     "expression": "1213457.4166666667",
-     "expression_mathml": "<cn>1213457.4166666667006</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(14561489.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_vaccinated_moderna_1dose",
-     "expression": "44238.583333333336",
-     "expression_mathml": "<cn>44238.583333333335986</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(530863.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "S_vaccinated_moderna_2dose",
-     "expression": "1213457.4166666667",
-     "expression_mathml": "<cn>1213457.4166666667006</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(14561489.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_vaccinated_moderna_2dose",
-     "expression": "44238.583333333336",
-     "expression_mathml": "<cn>44238.583333333335986</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(530863.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "S_vaccinated_pfizer_1dose",
-     "expression": "1213457.4166666667",
-     "expression_mathml": "<cn>1213457.4166666667006</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(14561489.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_vaccinated_pfizer_1dose",
-     "expression": "44238.583333333336",
-     "expression_mathml": "<cn>44238.583333333335986</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(530863.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "S_vaccinated_pfizer_2dose",
-     "expression": "1213457.4166666667",
-     "expression_mathml": "<cn>1213457.4166666667006</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(14561489.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>14561489.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_vaccinated_pfizer_2dose",
-     "expression": "44238.583333333336",
-     "expression_mathml": "<cn>44238.583333333335986</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(530863.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>530863.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R_unvaccinated_masked",
-     "expression": "517475.500000000",
-     "expression_mathml": "<cn>517475.5</cn>"
+     "expression": "SympyExprStr(SympyExprStr(2069902.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R_unvaccinated_unmasked",
-     "expression": "517475.500000000",
-     "expression_mathml": "<cn>517475.5</cn>"
+     "expression": "SympyExprStr(SympyExprStr(2069902.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R_vaccinated_j_and_j",
-     "expression": "344983.6666666667",
-     "expression_mathml": "<cn>344983.6666666667006</cn>"
+     "expression": "SympyExprStr(SympyExprStr(2069902.0)/2)/3",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply>"
     },
     {
      "target": "R_vaccinated_moderna_1dose",
-     "expression": "172491.83333333334",
-     "expression_mathml": "<cn>172491.83333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2069902.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R_vaccinated_moderna_2dose",
-     "expression": "172491.83333333334",
-     "expression_mathml": "<cn>172491.83333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2069902.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R_vaccinated_pfizer_1dose",
-     "expression": "172491.83333333334",
-     "expression_mathml": "<cn>172491.83333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2069902.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R_vaccinated_pfizer_2dose",
-     "expression": "172491.83333333334",
-     "expression_mathml": "<cn>172491.83333333334008</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(2069902.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>2069902.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "H_unvaccinated_masked",
-     "expression": "186.000000000000",
-     "expression_mathml": "<cn>186.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(744.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "H_unvaccinated_unmasked",
-     "expression": "186.000000000000",
-     "expression_mathml": "<cn>186.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(744.0)/2)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "H_vaccinated_j_and_j",
-     "expression": "124.000000000000",
-     "expression_mathml": "<cn>124.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(744.0)/2)/3",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply>"
     },
     {
      "target": "H_vaccinated_moderna_1dose",
-     "expression": "62.0000000000000",
-     "expression_mathml": "<cn>62.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(744.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "H_vaccinated_moderna_2dose",
-     "expression": "62.0000000000000",
-     "expression_mathml": "<cn>62.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(744.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "H_vaccinated_pfizer_1dose",
-     "expression": "62.0000000000000",
-     "expression_mathml": "<cn>62.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(744.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "H_vaccinated_pfizer_2dose",
-     "expression": "62.0000000000000",
-     "expression_mathml": "<cn>62.0</cn>"
+     "expression": "SympyExprStr(SympyExprStr(SympyExprStr(744.0)/2)/3)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><apply><divide/><sympyexprstr><cn>744.0</cn></sympyexprstr><cn>2</cn></apply></sympyexprstr><cn>3</cn></apply></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "D",
-     "expression": "53550.0000000000",
+     "expression": "53550.0",
      "expression_mathml": "<cn>53550.0</cn>"
     }
    ],

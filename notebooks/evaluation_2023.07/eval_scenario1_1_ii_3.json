@@ -1,9 +1,11 @@
 {
- "name": "Evaluation Scenario 1. Part 1 (ii) Masking type 3",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Evaluation Scenario 1. Part 1 (ii) Masking type 3",
- "model_version": "0.1",
+ "header": {
+  "name": "Evaluation Scenario 1. Part 1 (ii) Masking type 3",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Evaluation Scenario 1. Part 1 (ii) Masking type 3",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -472,33 +474,33 @@
    "initials": [
     {
      "target": "S_compliant",
-     "expression": "9669997.50000000",
-     "expression_mathml": "<cn>9669997.5</cn>"
+     "expression": "SympyExprStr(19339995.0)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><cn>19339995.0</cn></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_compliant",
-     "expression": "2.00000000000000",
-     "expression_mathml": "<cn>2.0</cn>"
+     "expression": "SympyExprStr(4.0)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><cn>4.0</cn></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_compliant",
-     "expression": "0.500000000000000",
-     "expression_mathml": "<cn>0.5</cn>"
+     "expression": "SympyExprStr(1.0)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><cn>1.0</cn></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "I_noncompliant",
-     "expression": "2.00000000000000",
-     "expression_mathml": "<cn>2.0</cn>"
+     "expression": "SympyExprStr(4.0)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><cn>4.0</cn></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "S_noncompliant",
-     "expression": "9669997.50000000",
-     "expression_mathml": "<cn>9669997.5</cn>"
+     "expression": "SympyExprStr(19339995.0)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><cn>19339995.0</cn></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "E_noncompliant",
-     "expression": "0.500000000000000",
-     "expression_mathml": "<cn>0.5</cn>"
+     "expression": "SympyExprStr(1.0)/2",
+     "expression_mathml": "<apply><divide/><sympyexprstr><cn>1.0</cn></sympyexprstr><cn>2</cn></apply>"
     },
     {
      "target": "R",

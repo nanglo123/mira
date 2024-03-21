@@ -1,9 +1,12 @@
 {
- "name": "Scenario 1d",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Scenario 1d",
- "model_version": "0.1",
+ "schema": {},
+ "header": {
+  "name": "Scenario 1d",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Scenario 1d",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -176,27 +179,27 @@
     {
      "target": "S",
      "expression": "0.999999821428571",
-     "expression_mathml": "<cn>0.99999982142857147</cn>"
+     "expression_mathml": "<sympyexprstr><cn>0.99999982142857147</cn></sympyexprstr>"
     },
     {
      "target": "I",
      "expression": "0",
-     "expression_mathml": "<cn>0</cn>"
+     "expression_mathml": "<sympyexprstr><cn>0</cn></sympyexprstr>"
     },
     {
      "target": "E",
      "expression": "1.78571428571429e-7",
-     "expression_mathml": "<cn>1.7857142857142858e-7</cn>"
+     "expression_mathml": "<sympyexprstr><cn>1.7857142857142858e-7</cn></sympyexprstr>"
     },
     {
      "target": "R",
      "expression": "0",
-     "expression_mathml": "<cn>0</cn>"
+     "expression_mathml": "<sympyexprstr><cn>0</cn></sympyexprstr>"
     },
     {
      "target": "D",
      "expression": "0",
-     "expression_mathml": "<cn>0</cn>"
+     "expression_mathml": "<sympyexprstr><cn>0</cn></sympyexprstr>"
     }
    ],
    "parameters": [
@@ -311,6 +314,10 @@
       "expression": "1/day",
       "expression_mathml": "<apply><power/><ci>day</ci><cn>-1</cn></apply>"
      }
+    },
+    {
+     "id": "k",
+     "value": 5.0
     }
    ],
    "observables": [

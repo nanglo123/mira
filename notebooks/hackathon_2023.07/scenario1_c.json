@@ -161,28 +161,28 @@
    "initials": [
     {
      "target": "S",
-     "expression": "Expr(5599999)",
-     "expression_mathml": "<expr><cn>5599999</cn></expr>"
+     "expression": "5599999.0",
+     "expression_mathml": "<cn>5599999.0</cn>"
     },
     {
      "target": "I",
-     "expression": "Expr(0)",
-     "expression_mathml": "<expr><cn>0</cn></expr>"
+     "expression": "0.0",
+     "expression_mathml": "<cn>0.0</cn>"
     },
     {
      "target": "E",
-     "expression": "Expr(1)",
-     "expression_mathml": "<expr><cn>1</cn></expr>"
+     "expression": "1.0",
+     "expression_mathml": "<cn>1.0</cn>"
     },
     {
      "target": "R",
-     "expression": "Expr(0)",
-     "expression_mathml": "<expr><cn>0</cn></expr>"
+     "expression": "0.0",
+     "expression_mathml": "<cn>0.0</cn>"
     },
     {
      "target": "D",
-     "expression": "Expr(0)",
-     "expression_mathml": "<expr><cn>0</cn></expr>"
+     "expression": "0.0",
+     "expression_mathml": "<cn>0.0</cn>"
     }
    ],
    "parameters": [

@@ -1,9 +1,11 @@
 {
- "name": "Scenario 1 q2 mcmahan",
- "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.5/petrinet/petrinet_schema.json",
- "schema_name": "petrinet",
- "description": "Scenario 1 q2 mcmahan",
- "model_version": "0.1",
+ "header": {
+  "name": "Scenario 1 q2 mcmahan",
+  "schema": "https://raw.githubusercontent.com/DARPA-ASKEM/Model-Representations/petrinet_v0.6/petrinet/petrinet_schema.json",
+  "schema_name": "petrinet",
+  "description": "Scenario 1 q2 mcmahan",
+  "model_version": "0.1"
+ },
  "properties": {},
  "model": {
   "states": [
@@ -127,17 +129,17 @@
    "initials": [
     {
      "target": "S",
-     "expression": "24997.5000000000",
+     "expression": "24997.5",
      "expression_mathml": "<cn>24997.5</cn>"
     },
     {
      "target": "I",
-     "expression": "1.25000000000000",
+     "expression": "1.25",
      "expression_mathml": "<cn>1.25</cn>"
     },
     {
      "target": "E",
-     "expression": "1.25000000000000",
+     "expression": "1.25",
      "expression_mathml": "<cn>1.25</cn>"
     },
     {
@@ -162,6 +164,26 @@
       "expression": "1/day",
       "expression_mathml": "<apply><power/><ci>day</ci><cn>-1</cn></apply>"
      }
+    },
+    {
+     "id": "delta",
+     "value": 0.2
+    },
+    {
+     "id": "N",
+     "value": 25000.0
+    },
+    {
+     "id": "t_0",
+     "value": 89.0
+    },
+    {
+     "id": "kappa",
+     "value": 0.45454545454545453
+    },
+    {
+     "id": "k",
+     "value": 5.0
     }
    ],
    "observables": [
