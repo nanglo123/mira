@@ -877,6 +877,7 @@ def get_concept_comparison_table(
     model1: TemplateModel,
     model2: TemplateModel,
     refinement_func: Callable[[str, str], bool] = None,
+    keep_unmatched: bool = False,
 ) -> pd.DataFrame:
     """Compare two template models by their concepts and return a table
 
@@ -889,6 +890,8 @@ def get_concept_comparison_table(
     refinement_func :
         The refinement function to use when comparing concepts. Default: the default
         DKG refinement closure's is_ontological_child method.
+    keep_unmatched :
+        Add unmatched concepts to the table as well. Default: False.
 
     Returns
     -------
@@ -922,8 +925,7 @@ def get_concept_comparison_table(
         _get_name_from_concept(c): c for c in model2.get_concepts_map().values()
     }
 
-    # Create a table with the concepts as columns and rows, fill it with emtpy strings
-
+    # Create a table with the concepts as columns and rows
     # Loop all combinations of concepts and compare them
     data = defaultdict(lambda: defaultdict(str))
     for name1, concept1 in model1_concepts.items():
@@ -934,6 +936,8 @@ def get_concept_comparison_table(
                 data[name1][name2] = REFINEMENT_SYMBOLS["refinement_of"]
             elif concept2.refinement_of(concept1, refinement_func, with_context=True):
                 data[name1][name2] = REFINEMENT_SYMBOLS["refinement_by"]
+            elif keep_unmatched:
+                data[name1][name2] = ""
     table = pd.DataFrame(data)
     table.fillna("", inplace=True)
     return table
