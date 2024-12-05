@@ -878,6 +878,7 @@ def get_concept_comparison_table(
     model2: TemplateModel,
     refinement_func: Callable[[str, str], bool] = None,
     keep_unmatched: bool = False,
+    use_full_name: bool = True,
 ) -> pd.DataFrame:
     """Compare two template models by their concepts and return a table
 
@@ -892,6 +893,9 @@ def get_concept_comparison_table(
         DKG refinement closure's is_ontological_child method.
     keep_unmatched :
         Add unmatched concepts to the table as well. Default: False.
+    use_full_name :
+        Use the full name, including top curie and context (if available), of the
+        concepts in the table. Default: True. If False, use one of display name or name.
 
     Returns
     -------
@@ -906,6 +910,8 @@ def get_concept_comparison_table(
     def _get_name_from_concept(concept: Concept) -> str:
         # Get name with grounding and context (if available)
         name = concept.display_name or concept.name or "N/A"
+        if not use_full_name:
+            return name
         if concept.get_curie():
             name += f" ({':'.join(concept.get_curie())})"
         if concept.context:
