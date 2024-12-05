@@ -879,6 +879,7 @@ def get_concept_comparison_table(
     refinement_func: Callable[[str, str], bool] = None,
     keep_unmatched: bool = False,
     use_full_name: bool = True,
+    longest_on_rows: bool = False,
 ) -> pd.DataFrame:
     """Compare two template models by their concepts and return a table
 
@@ -896,6 +897,8 @@ def get_concept_comparison_table(
     use_full_name :
         Use the full name, including top curie and context (if available), of the
         concepts in the table. Default: True. If False, use one of display name or name.
+    longest_on_rows :
+        If True, switch the longest axis to the rows. Default: False.
 
     Returns
     -------
@@ -946,4 +949,9 @@ def get_concept_comparison_table(
                 data[name1][name2] = ""
     table = pd.DataFrame(data)
     table.fillna("", inplace=True)
+
+    # Transpose if len(rows) < len(columns)
+    if longest_on_rows and table.shape[0] < table.shape[1]:
+        table = table.T
+
     return table
