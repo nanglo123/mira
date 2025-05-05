@@ -162,6 +162,7 @@ def template_model_from_sympy_odes(odes, concept_data=None, param_data=None):
     parameters = set()
     all_terms = []
     G = Hypergraph()
+    variable_set = set(variables)
     for lhs_variable, eq in zip(variables, odes):
         # No terms to add for static variables
         if lhs_variable in is_static:
@@ -175,7 +176,8 @@ def template_model_from_sympy_odes(odes, concept_data=None, param_data=None):
             parameters |= term.free_symbols - {time_variable}
             # Determine potential controllers of the term
             funcs = term.atoms(Function)
-            potential_controllers = {f.name for f in funcs} - {lhs_variable}
+            funcs = set(func.name for func in funcs if hasattr(func,"name"))
+            potential_controllers = variable_set & funcs  - {lhs_variable}
             # Now we add the term as a node to the hypergraph with some
             # further properties needed later
             G.add_node((lhs_variable, term_idx),
@@ -224,7 +226,7 @@ def template_model_from_sympy_odes(odes, concept_data=None, param_data=None):
         data = G.nodes[node]
         term = data['term']
         rate_law = term.subs({f: sympy.Symbol(f.name)
-                              for f in term.atoms(Function)})
+                              for f in term.atoms(Function) if hasattr(f,"name")})
         concept = make_concept(data['lhs_var'], concept_data)
         controllers = data['potential_controllers'] - {data['lhs_var']}
         if data['neg']:
